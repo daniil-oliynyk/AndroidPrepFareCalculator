@@ -3,6 +3,7 @@ package com.daniil.ridefareestimator
 import android.os.Bundle
 import android.util.Log
 import android.widget.RadioButton
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.daniil.ridefareestimator.databinding.ActivityMainBinding
 
@@ -23,6 +24,28 @@ class MainActivity : AppCompatActivity() {
 
         binding.calculateButton.setOnClickListener { calculateButtonListener() }
 
+        binding.surgeSeekBar.setOnSeekBarChangeListener(
+            object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                    binding.surgeValueTextView.text = "Surge: " + progress.toString() + "x"
+
+                }
+
+                override fun onStartTrackingTouch(p0: SeekBar?) {
+                    return
+                }
+
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                    return
+                }
+
+            }
+        )
+
     }
     private fun calculateButtonListener() {
         val distance = binding.distanceEditText.text.toString()
@@ -30,9 +53,9 @@ class MainActivity : AppCompatActivity() {
         val checkedRadioButtonId = binding.rideTypeRadioGroup.checkedRadioButtonId
         val rideTypePrice = mapRideTypePrice(mapTextToRideType(binding.root.findViewById<RadioButton>(checkedRadioButtonId).text.toString()))
 
+        val surgeValue = binding.surgeSeekBar.progress.toDouble()
 
-
-        val fare = baseFareValue + rideTypePrice*(pricePerKm * distance.toDouble())
+        val fare = surgeValue*(baseFareValue + rideTypePrice*(pricePerKm * distance.toDouble()))
         binding.estimatedFareTextView.text = fare.toString()
 
 
@@ -43,4 +66,8 @@ class MainActivity : AppCompatActivity() {
         binding.selectedRideTypeTextView.text = "Selected ride type: Standard"
         binding.surgeValueTextView.text = "Surge: 1.0x"
     }
+
+
 }
+
+
