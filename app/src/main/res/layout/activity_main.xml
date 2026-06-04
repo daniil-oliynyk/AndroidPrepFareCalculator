@@ -170,11 +170,11 @@
                 android:id="@+id/estimatedFareTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="$0.00"
-                android:textSize="32sp"
-                android:textStyle="bold"
                 android:textColor="#111111"
-                android:layout_marginTop="8dp" />
+                android:textSize="32sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/fareBreakdownPlaceholderTextView"

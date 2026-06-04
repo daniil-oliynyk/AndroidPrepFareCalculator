@@ -1,9 +1,9 @@
 package com.daniil.ridefareestimator
 
 data class FareEstimate(
-    val baseFareCents: Int,
-    val distanceFareCents: Int,
-    val rideTypeAdjustmentCents: Int,
-    val surgeAdjustmentCents: Int,
-    val totalCents: Int
+    var baseFare: Double,
+    var distanceFare: Double,
+    var rideTypeAdjustment: Double,
+    var surgeAdjustment: Double,
+    var total: Double
 )

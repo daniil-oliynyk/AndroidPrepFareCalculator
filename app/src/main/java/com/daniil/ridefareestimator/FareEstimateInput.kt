@@ -1,7 +1,7 @@
 package com.daniil.ridefareestimator
 
 data class FareEstimateInput(
-    val distanceKm: Double,
-    val rideType: RideType,
-    val surgeMultiplier: Double
+    var distanceKm: Double,
+    var rideType: RideType,
+    var surgeMultiplier: Double
 )
