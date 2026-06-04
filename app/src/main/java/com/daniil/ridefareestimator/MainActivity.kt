@@ -1,6 +1,8 @@
 package com.daniil.ridefareestimator
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import com.daniil.ridefareestimator.databinding.ActivityMainBinding
 
@@ -24,7 +26,13 @@ class MainActivity : AppCompatActivity() {
     }
     private fun calculateButtonListener() {
         val distance = binding.distanceEditText.text.toString()
-        val fare = baseFareValue + (pricePerKm * distance.toDouble())
+
+        val checkedRadioButtonId = binding.rideTypeRadioGroup.checkedRadioButtonId
+        val rideTypePrice = mapRideTypePrice(mapTextToRideType(binding.root.findViewById<RadioButton>(checkedRadioButtonId).text.toString()))
+
+
+
+        val fare = baseFareValue + rideTypePrice*(pricePerKm * distance.toDouble())
         binding.estimatedFareTextView.text = fare.toString()
 
 
